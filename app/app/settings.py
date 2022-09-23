@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_spectacular',
     # app
-    'core'
+    'core',
+    'user',
 ]
 
 MIDDLEWARE = [
