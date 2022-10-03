@@ -35,10 +35,10 @@ RUN python -m venv /py && \
         django-user && \
     mkdir -p /vol/web/media && \
     mkdir -p /vol/web/static && \
-    chown -R django-uer:django-user /vol && \
+    chown -R django-user:django-user /vol && \
     chmod -R 755 /vol
     # here -p is for create all sub dir if not exists
-
+    # django-user:django-user  [user group]
 # PATH env auto create inside the image on linux os
 ENV PATH="/py/bin:$PATH"
 

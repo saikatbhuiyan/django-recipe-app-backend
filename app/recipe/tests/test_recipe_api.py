@@ -4,6 +4,7 @@ Tests for recipe APIs.
 import os
 import tempfile
 
+# PIL is pillow image library
 from PIL import Image
 from decimal import Decimal
 
@@ -36,7 +37,7 @@ def detail_url(recipe_id):
 
 def image_upload_url(recipe_id):
     """Create and return an image upload URL."""
-    return reverse('recipe:recipe-detail', args=[recipe_id])
+    return reverse('recipe:recipe-upload-image', args=[recipe_id])
 
 
 def create_recipe(user, **params):
@@ -392,6 +393,7 @@ class ImageUploadTests(TestCase):
         self.client.force_authenticate(self.user)
         self.recipe = create_recipe(user=self.user)
 
+    # it's like setUp but instead of before it run after the test
     def tearDown(self):
         self.recipe.image.delete()
 
@@ -399,9 +401,16 @@ class ImageUploadTests(TestCase):
         """Test uploading an image to a recipe."""
         url = image_upload_url(self.recipe.id)
         with tempfile.NamedTemporaryFile(suffix='.jpg') as image_file:
+
+            # it will create 10 pixel by 10 pixel black image
             img = Image.new('RGB', (10, 10))
+
+            # saving the image in image_file which is temporary file
             img.save(image_file, format='JPEG')
+
+            # seek beginning of the for upload it
             image_file.seek(0)
+
             payload = {'image': image_file}
             res = self.client.post(url, payload, format='multipart')
 
