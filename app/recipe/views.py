@@ -24,7 +24,6 @@ from core.models import (
     Ingredient
 )
 from recipe import serializers
-from symbol import parameters
 
 # extend schema for list view
 
