@@ -3,7 +3,7 @@ Test models
 """
 from unittest.mock import patch
 from decimal import Decimal
-import uuid
+# import uuid
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
