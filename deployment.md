@@ -117,4 +117,8 @@ To apply the update, run:
 docker-compose -f docker-compose-deploy.yml up --no-deps -d app
 ```
 
+```sh
+docker-compose -f docker-compose-deploy.yml run --rm app sh -c "python manage.py createsuperuser"
+```
+
 The `--no-deps -d` ensures that the dependant services (such as `proxy`) do not restart.
